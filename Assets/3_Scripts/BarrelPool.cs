@@ -61,4 +61,15 @@ public class BarrelPool
         tileToReturn.transform.position = Vector3.zero;
         tileToReturn.transform.rotation = Quaternion.identity;
     }
+
+    public void ReturnAllToPool()
+    {
+        foreach (List<TowerTile> tileList in poolDict.Values)
+        {
+            foreach (TowerTile tile in tileList)
+            {
+                ReturnToPool(tile);
+            }
+        }
+    }
 }

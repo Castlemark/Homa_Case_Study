@@ -135,7 +135,7 @@ public class TowerTile : MonoBehaviour
 
     public virtual void Explode(bool instant = false)
     {
-        if (Active) {
+        if (Active && gameObject.activeSelf) {
             Active = false;
             StartCoroutine(ChainExplodeRoutine(instant));
         }

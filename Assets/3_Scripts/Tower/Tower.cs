@@ -89,16 +89,9 @@ public class Tower : MonoBehaviour
 
     public void ResetTower()
     {
+        BarrelPool.Instance.ReturnAllToPool();
         if (tilesByFloor != null) {
-            foreach (List<TowerTile> tileList in tilesByFloor) {
-                foreach (TowerTile tile in tileList) {
-                    if (Application.isPlaying)
-                        Destroy(tile.gameObject);
-                    else
-                        DestroyImmediate(tile.gameObject);
-                }
-                tileList.Clear();
-            }
+            foreach (List<TowerTile> tileList in tilesByFloor) { tileList.Clear(); }
             tilesByFloor.Clear();
         }
     }

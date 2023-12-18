@@ -65,7 +65,7 @@ public class GameManager : Singleton<GameManager>
         FxPool.Instance.EnsureQuantity(tileExplosionFx, 3);
         FxPool.Instance.EnsureQuantity(tileDestroyFx, 30);
         
-        BarrelPool.Instance.EnsureQuantity(towerTile, 100);
+        BarrelPool.Instance.EnsureQuantity(towerTile, 200);
         BarrelPool.Instance.EnsureQuantity(explodingTile, 20);
     }
 
