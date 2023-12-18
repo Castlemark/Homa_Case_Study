@@ -13620,6 +13620,10 @@ MonoBehaviour:
   tileDestroyFx: {fileID: 2316818187418362315, guid: d8ca6c78cee9d8747b5c752258bc411f,
     type: 3}
   tileExplosionFx: {fileID: 19849376, guid: a169618806c2e1345b7a3f7b15e05417, type: 3}
+  towerTile: {fileID: -3011388081553121680, guid: b808b351a9dae5a449590253d3050ba5,
+    type: 3}
+  explodingTile: {fileID: 2847820013253688103, guid: 6f878a0ad2c57a84190d47cbb72f7e14,
+    type: 3}
 --- !u!95 &1508039424
 Animator:
   serializedVersion: 5

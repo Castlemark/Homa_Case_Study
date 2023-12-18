@@ -42,6 +42,11 @@ public class GameManager : Singleton<GameManager>
     ParticleSystem tileDestroyFx;
     [SerializeField]
     ParticleSystem tileExplosionFx;
+    [SerializeField]
+    TowerTile towerTile;
+    [SerializeField] 
+    ExplodingTile explodingTile;
+
 
     Animator animator;
 
@@ -56,8 +61,12 @@ public class GameManager : Singleton<GameManager>
         Application.targetFrameRate = 60;
         animator = GetComponent<Animator>();
         animator.speed = 1.0f / Time.timeScale;
+
         FxPool.Instance.EnsureQuantity(tileExplosionFx, 3);
         FxPool.Instance.EnsureQuantity(tileDestroyFx, 30);
+        
+        BarrelPool.Instance.EnsureQuantity(towerTile, 100);
+        BarrelPool.Instance.EnsureQuantity(explodingTile, 20);
     }
 
     private void Start()
@@ -86,10 +95,12 @@ public class GameManager : Singleton<GameManager>
     {
         ballCount--;
         ballCountText.text = ballCount.ToString("N0");
-        if (ballCount == 1) {
+        if (ballCount == 1)
+        {
             oneBallRemaining.Play();
         }
-        else if (ballCount == 0) {
+        else if (ballCount == 0)
+        {
             SaveData.PreviousHighscore = Mathf.Max(SaveData.PreviousHighscore, ((float)destroyedTileCount / tileCount) / minPercent);
             SetGameState(GameState.WaitingLose);
         }
@@ -103,12 +114,14 @@ public class GameManager : Singleton<GameManager>
 
     public void OnTileDestroyed(TowerTile tile)
     {
-        if (gameState == GameState.Playing || gameState == GameState.WaitingLose) {
+        if (gameState == GameState.Playing || gameState == GameState.WaitingLose)
+        {
             comboUI.CountCombo(tile.transform.position);
             destroyedTileCount++;
             float p = (float)destroyedTileCount / tileCount;
             percentCounter.SetValueSmooth(p / minPercent);
-            if (p >= minPercent) {
+            if (p >= minPercent)
+            {
                 CameraShakeManager.Instance.StopAll(true);
                 CameraShakeManager.Instance.enabled = false;
                 SaveData.CurrentLevel++;
