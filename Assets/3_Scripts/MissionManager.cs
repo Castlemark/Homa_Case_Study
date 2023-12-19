@@ -15,10 +15,10 @@ public class MissionManager : Singleton<MissionManager>
 
     void Awake()
     {
+        if (!RemoteConfig.MISSIONS_ENABLED) { return; }
+
         MissionManagerData.Instance.Initialize();
         RefillMissions();
-
-        MissionsRefilledEvent?.Invoke(MissionManagerData.Instance.selectedMissions);
     }
 
     private void RefillMissions()
@@ -35,10 +35,14 @@ public class MissionManager : Singleton<MissionManager>
             IMission instantiatedMission = Instantiate(missionList[randomIndex]);
             MissionManagerData.Instance.selectedMissions[i] = instantiatedMission;
         }
+
+        MissionsRefilledEvent?.Invoke(MissionManagerData.Instance.selectedMissions);
     }
 
     public void UpdateMission(IMissionTrackable missionTrackable)
     {
+        if (!RemoteConfig.MISSIONS_ENABLED) { return; }
+
         foreach (IMission mission in MissionManagerData.Instance.selectedMissions)
         {
             if (mission.MissionTrackable.ID == missionTrackable.ID && !mission.Completed)

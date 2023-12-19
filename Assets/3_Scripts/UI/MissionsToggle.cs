@@ -10,7 +10,15 @@ public class MissionsToggle : MonoBehaviour
 
     private void Awake() 
     {
-        button.onClick.AddListener(TogglePanel);
+        if (RemoteConfig.MISSIONS_ENABLED)
+        {
+            button.onClick.AddListener(TogglePanel);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            missionsPanel.SetActive(false);
+        }
     }
 
     private void TogglePanel()
