@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62291c2b8f57b5b4ba74adefaf4c8d7c, type: 3}
+  m_Name: TileCollectMissionObjective
+  m_EditorClassIdentifier: 
+  towerTile: {fileID: -3011388081553121680, guid: b808b351a9dae5a449590253d3050ba5,
+    type: 3}
+  amountToCollect: 20
+  missionRewardAndAmount:
+    MissionReward: {fileID: 11400000, guid: 1c1406aa2ab6d6e4b8773cb345a4234d, type: 2}
+    amount: 10

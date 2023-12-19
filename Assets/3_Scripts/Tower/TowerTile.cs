@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerTile : MonoBehaviour
+[Serializable]
+public class TowerTile : MonoBehaviour, IMissionTrackable
 {
     [SerializeField]
     protected new MeshRenderer renderer;
@@ -27,6 +29,10 @@ public class TowerTile : MonoBehaviour
     public System.Action<TowerTile> OnTileDestroyed;
     public bool Active { get; protected set; }
 
+    public string ID => GetType().Name;
+
+    public string Name => GenerateName();
+
     List<TowerTile> connectedTiles = new List<TowerTile>();
     float nextCheckTime = 0;
     private bool drifting;
@@ -37,6 +43,8 @@ public class TowerTile : MonoBehaviour
     {
         TileColorManager.Instance.OnColorListChanged += ResetColor;
     }
+
+    protected virtual string GenerateName() { return "Normal"; }
 
     protected virtual void OnDestroy()
     {

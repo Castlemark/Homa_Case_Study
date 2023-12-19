@@ -62,6 +62,8 @@ public class GameManager : Singleton<GameManager>
         animator = GetComponent<Animator>();
         animator.speed = 1.0f / Time.timeScale;
 
+        MissionManager.Instance.MissionCompletedEvent += OnMissionCompleted;
+
         FxPool.Instance.EnsureQuantity(tileExplosionFx, 3);
         FxPool.Instance.EnsureQuantity(tileDestroyFx, 30);
         
@@ -116,6 +118,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (gameState == GameState.Playing || gameState == GameState.WaitingLose)
         {
+            MissionManager.Instance.UpdateMission(tile);
+
             comboUI.CountCombo(tile.transform.position);
             destroyedTileCount++;
             float p = (float)destroyedTileCount / tileCount;
@@ -137,6 +141,11 @@ public class GameManager : Singleton<GameManager>
     {
         SetGameState(GameState.Playing);
         tower.StartGame();
+    }
+
+    public void OnMissionCompleted(IMission mission)
+    {
+        Debug.Log($"Mission completed, reward is {mission.Reward.amount} {mission.Reward.MissionReward.ID}");
     }
 
 }

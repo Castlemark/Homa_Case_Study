@@ -18,6 +18,9 @@ public class ExplodingTile : TowerTile
         base.Awake();
         collider = GetComponent<Collider>();
     }
+
+    protected override string GenerateName() { return "Exploding"; }
+
     protected override void OnDestroy()
     {
         if (CameraShakeManager.Instance)
