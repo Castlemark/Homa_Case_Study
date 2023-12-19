@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTile: {fileID: -3011388081553121680, guid: b808b351a9dae5a449590253d3050ba5,
     type: 3}
-  amountToCollect: 20
+  amountToCollect: 99
   missionRewardAndAmount:
     MissionReward: {fileID: 11400000, guid: 1c1406aa2ab6d6e4b8773cb345a4234d, type: 2}
     amount: 10
